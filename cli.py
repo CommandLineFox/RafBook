@@ -1,5 +1,5 @@
 import click
-from node import Node
+from tcp.node import Node
 
 node = None
 
