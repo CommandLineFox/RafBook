@@ -1,9 +1,10 @@
 import socket
 import threading
+import yaml
 
 
 class TcpServer:
-    def __init__(self, host='localhost', port=3000):
+    def __init__(self, host='localhost', port=2000):
         self.host = host
         self.port = port
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -51,5 +52,7 @@ class TcpServer:
 
 
 if __name__ == '__main__':
-    server = TcpServer()
+    with open('config.yml', 'r') as config_file:
+        config = yaml.safe_load(config_file)
+    server = TcpServer(port=config['bootstrap']['port'])
     server.start()

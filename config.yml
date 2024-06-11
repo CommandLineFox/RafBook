@@ -1,0 +1,11 @@
+working_root: "/path/to/working_root"
+chord_size: 64
+bootstrap:
+  ip: "localhost"
+  port: 2000
+servents:
+  - port: 1100
+  - port: 1200
+  - port: 1300
+  - port: 1400
+  - port: 1600

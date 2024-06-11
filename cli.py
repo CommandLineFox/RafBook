@@ -10,18 +10,18 @@ def cli():
 
 
 @cli.command()
-@click.argument('address')
+@click.argument('config_path')
 @click.argument('port', type=int)
-def login(address, port):
+def login(config_path, port):
     global node
     if node:
         click.echo("Error: Already logged in. Please stop the current node first.")
         return
     try:
-        node = Node(address, port)
-        click.echo(f"Logged in and node created at {address}:{port}")
+        node = Node(config_path, port)
+        click.echo(f"Logged in and node created with config {config_path} and port {port}")
     except ConnectionRefusedError:
-        click.echo(f"Error: Cannot connect to {address}:{port}")
+        click.echo(f"Error: Cannot connect to bootstrap node")
 
 
 @cli.command()
