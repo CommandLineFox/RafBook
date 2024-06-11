@@ -31,23 +31,13 @@ class TcpServer:
                 message = client_socket.recv(1024).decode('utf-8')
                 if not message:
                     break
-                print(f"Received: {message.strip()}")
-                self.broadcast_message(message, client_socket)
+                print(f"Received from {client_socket.getpeername()}: {message.strip()}")
         except Exception as e:
             print(f"Client handling error: {e}")
         finally:
             with self.lock:
                 self.clients.remove(client_socket)
             client_socket.close()
-
-    def broadcast_message(self, message, from_client):
-        with self.lock:
-            for client in self.clients:
-                if client != from_client:
-                    try:
-                        client.send(message.encode('utf-8'))
-                    except Exception as e:
-                        print(f"Error sending message: {e}")
 
 
 if __name__ == '__main__':
