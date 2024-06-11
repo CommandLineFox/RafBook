@@ -1,4 +1,4 @@
-working_root: "/path/to/working_root"
+working_root: "./working_root"
 chord_size: 64
 bootstrap:
   ip: "localhost"
